@@ -1,7 +1,10 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:smart_pay/pages/onboarding_1.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_pay/views/widgets/bottom_indicator.dart';
+
+import 'first_onboarding.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -45,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen>
   void _navigateToHome() {
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => const Onboarding_1(),
+          pageBuilder: (context, animation, secondaryAnimation) => const FirstOnBoarding(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(opacity: animation, child: child);
           }),
@@ -55,11 +58,16 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: Container(height: MediaQuery.of(context).size.height,
         color: Colors.white,
-        child:  Center(
-          child: ScaleTransition(scale: _animation,
-              child: SvgPicture.asset("assets/images/logo.svg")),
+        child:  Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(),
+            ScaleTransition(scale: _animation,
+                child: SvgPicture.asset("assets/images/logo.svg")),
+            bottomIndicator()
+          ],
         ),
       ),
     );
