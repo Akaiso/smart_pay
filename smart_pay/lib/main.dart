@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smart_pay/views/pages/first_onboarding.dart';
-import 'package:smart_pay/views/pages/second_onboarding.dart';
-import 'package:smart_pay/views/pages/sing_in.dart';
-import 'package:smart_pay/views/pages/splash_screen.dart';
+import 'package:smart_pay/views/pages/confirmation_page.dart';
+import 'package:smart_pay/views/pages/create_pin.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
           bodyLarge: TextStyle(
             fontFamily: "SFPRODISPLAY",
             fontWeight: FontWeight.w600,
-            color: Color(0xff0A6375),
+            color:  Color(0xff0A6375),
             fontSize: 14,
           ),
             bodySmall: TextStyle(
@@ -53,7 +52,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const SignIn(),
+      home:  const ConfirmationPage(),
      //  initialRoute: '/',
      //  routes: {
      //    '/': (context) => const SplashScreen(),

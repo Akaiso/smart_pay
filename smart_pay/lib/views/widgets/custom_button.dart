@@ -10,17 +10,16 @@ class CustomButton extends StatelessWidget {
   final double? width;
 
   const CustomButton(
-      {Key? key,
+      {super.key,
       required this.label,
       required this.onPressed,
       this.color,
       this.textStyle,
-      this.width})
-      : super(key: key);
+      this.width});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 56,
       width: width ?? 287,
       child: ElevatedButton(
@@ -33,13 +32,17 @@ class CustomButton extends StatelessWidget {
         ),
         child: Text(
           label,
-          style: textStyle ?? TextStyle(color: Colors.white),
+          style: textStyle ??
+              const TextStyle(
+                  color: Colors.white,
+                  fontFamily: "SFPRODISPLAY",
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16),
         ),
       ),
     );
   }
 }
-
 
 class OSButton extends StatelessWidget {
   final String label;
@@ -49,17 +52,16 @@ class OSButton extends StatelessWidget {
   final double? width;
 
   const OSButton(
-      {Key? key,
-        required this.label,
-        required this.onPressed,
-        this.color,
-        this.textStyle,
-        this.width})
-      : super(key: key);
+      {super.key,
+      required this.label,
+      required this.onPressed,
+      this.color,
+      this.textStyle,
+      this.width});
 
   @override
   Widget build(BuildContext context) {
-    return  InkWell(
+    return InkWell(
       hoverColor: Colors.transparent,
       splashColor: Colors.transparent,
       onTap: onPressed,
@@ -67,7 +69,7 @@ class OSButton extends StatelessWidget {
         width: width ?? 287,
         height: 56,
         decoration: BoxDecoration(
-           // No fill color
+          // No fill color
           border: Border.all(
             style: BorderStyle.solid,
             color: color ?? const Color(0xffE5E7EB), // Border color
@@ -80,8 +82,6 @@ class OSButton extends StatelessWidget {
         ),
       ),
     );
-
-
 
     //   SizedBox(
     //   height: 56,

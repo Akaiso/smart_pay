@@ -6,7 +6,6 @@ import 'package:smart_pay/views/widgets/bottom_indicator.dart';
 
 import 'first_onboarding.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -31,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen>
         CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
 
     _startSplashScreenTimer();
-
   }
 
   @override
@@ -48,7 +46,8 @@ class _SplashScreenState extends State<SplashScreen>
   void _navigateToHome() {
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => const FirstOnBoarding(),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const FirstOnBoarding(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(opacity: animation, child: child);
           }),
@@ -58,13 +57,15 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(height: MediaQuery.of(context).size.height,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
         color: Colors.white,
-        child:  Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(),
-            ScaleTransition(scale: _animation,
+            ScaleTransition(
+                scale: _animation,
                 child: SvgPicture.asset("assets/images/logo.svg")),
             bottomIndicator()
           ],

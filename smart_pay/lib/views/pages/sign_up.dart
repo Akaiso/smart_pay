@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:smart_pay/views/widgets/bottom_indicator.dart';
-import 'package:smart_pay/views/widgets/custom_button.dart';
+import 'package:flutter_svg/svg.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+import '../widgets/bottom_indicator.dart';
+import '../widgets/custom_button.dart';
+
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  bool _obscurePassword = true;
 
   @override
   void dispose() {
     _emailController.dispose();
-    _passwordController.dispose();
     super.dispose();
   }
 
@@ -40,26 +38,27 @@ class _SignInState extends State<SignIn> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "High there",
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                  SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: Image.asset("assets/images/wave_emoji.png")),
-                ],
+              Text.rich(
+                 TextSpan(
+                  text: "Create a ",
+                  style: Theme.of(context).textTheme.displayLarge,
+                   children: const <TextSpan>[
+                     TextSpan(
+                       text: "Smartpay",
+                       style: TextStyle(
+                         fontFamily: "SFPRODISPLAY",
+                         fontWeight: FontWeight.w600,
+                         fontSize: 24,color: Color(0xff0A6375),
+                       )
+                     ),
+                   ]
+                ),
               ),
+              Text("account", style: Theme.of(context).textTheme.displayLarge,),
               const SizedBox(
                 height: 20,
               ),
-              Text(
-                "welcome back, Sign in to yur account ",
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+
               const SizedBox(
                 height: 30,
               ),
@@ -76,49 +75,19 @@ class _SignInState extends State<SignIn> {
                 ),
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 16.0),
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color(0xffF9FAFB),
-                  labelText: 'Password',
-                  labelStyle: Theme.of(context).textTheme.bodySmall,
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(16)),
-                  suffixIcon: InkWell(
-                      onTap: () {
-                        setState(() {
-                          _obscurePassword = !_obscurePassword;
-                        });
-                      },
-                      child: _obscurePassword
-                          ? Image.asset("assets/images/eye_on.png")
-                          : SvgPicture.asset(
-                              "assets/images/eye_off.svg",
-                              fit: BoxFit.scaleDown,
-                            )),
-                ),
-                obscureText: _obscurePassword,
-              ),
+
               const SizedBox(
                 height: 20,
               ),
-              Text(
-                "Forgot password?",
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
+
               const SizedBox(height: 32.0),
               CustomButton(
                 label: "Sign In",
                 onPressed: () {
                   // Handle sign in logic here
                   final email = _emailController.text;
-                  final password = _passwordController.text;
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                        content: Text('Email: $email, Password: $password')),
+                    SnackBar(content: Text('Email: $email')),
                   );
                 },
                 width: MediaQuery.of(context).size.width,
@@ -172,7 +141,7 @@ class _SignInState extends State<SignIn> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Don't have an account? "),
+                  const Text("Already have an account? "),
                   Text(
                     "Sign Up",
                     style: Theme.of(context).textTheme.bodyLarge,
