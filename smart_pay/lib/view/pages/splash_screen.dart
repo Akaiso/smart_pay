@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:smart_pay/views/widgets/bottom_indicator.dart';
-
+import '../widgets/bottom_indicator.dart';
 import 'first_onboarding.dart';
 
 class SplashScreen extends StatefulWidget {

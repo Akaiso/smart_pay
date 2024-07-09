@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:smart_pay/views/widgets/custom_button.dart';
+
+import '../widgets/custom_button.dart';
 
 class ConfirmationPage extends StatefulWidget {
   const ConfirmationPage({super.key});

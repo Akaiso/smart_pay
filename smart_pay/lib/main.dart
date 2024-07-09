@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_pay/views/pages/confirmation_page.dart';
-import 'package:smart_pay/views/pages/create_pin.dart';
+import 'package:smart_pay/view/pages/confirmation_page.dart';
+import 'package:smart_pay/view/pages/password_recovery.dart';
+import 'package:smart_pay/view/pages/reset_password.dart';
+
 
 
 void main() {
@@ -52,7 +54,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home:  const ConfirmationPage(),
+      home:  const ResetPassword(),
      //  initialRoute: '/',
      //  routes: {
      //    '/': (context) => const SplashScreen(),
