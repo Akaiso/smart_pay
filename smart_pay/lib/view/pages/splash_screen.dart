@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import '../widgets/bottom_indicator.dart';
 import 'first_onboarding.dart';
 
@@ -27,7 +28,10 @@ class _SplashScreenState extends State<SplashScreen>
     _animation = Tween<double>(begin: 0.4, end: 1.0).animate(
         CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
 
-    _startSplashScreenTimer();
+    //_startSplashScreenTimer();
+    Future.delayed(const Duration(seconds: 3), (){
+      Get.offNamed('/onboarding');
+    });
   }
 
   @override
@@ -37,20 +41,24 @@ class _SplashScreenState extends State<SplashScreen>
     super.dispose();
   }
 
-  void _startSplashScreenTimer() {
-    Timer(const Duration(seconds: 2), _navigateToHome);
-  }
+  // void _startSplashScreenTimer() {
+  //   Timer(const Duration(seconds: 2), _navigateToHome);
+  // }
 
-  void _navigateToHome() {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) =>
-              const FirstOnBoarding(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(opacity: animation, child: child);
-          }),
-    );
-  }
+
+
+  // void _navigateToHome() {
+  //   Navigator.of(context).pushReplacement(
+  //     PageRouteBuilder(
+  //         pageBuilder: (context, animation, secondaryAnimation) =>
+  //             const FirstOnBoarding(),
+  //         transitionsBuilder: (context, animation, secondaryAnimation, child) {
+  //           return FadeTransition(opacity: animation, child: child);
+  //         }),
+  //   );
+  // }
+
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:smart_pay/view/widgets/other_buttons.dart';
 
 import '../widgets/bottom_indicator.dart';
 import '../widgets/custom_button.dart';
@@ -42,10 +44,7 @@ class _CreatePinState extends State<CreatePin> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: Image.asset("assets/images/back_button.png")),
+              backButton(),
               const SizedBox(
                 height: 20,
               ),
@@ -63,7 +62,7 @@ class _CreatePinState extends State<CreatePin> {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(15.0),
                 child: PinCodeTextField(
                   obscureText: true,
                   appContext: context,
@@ -74,8 +73,8 @@ class _CreatePinState extends State<CreatePin> {
                   pinTheme: PinTheme(
                     shape: PinCodeFieldShape.underline,
                    // borderRadius: BorderRadius.circular(12),
-                    fieldHeight: 56,
-                    fieldWidth: 56,
+                    fieldHeight: 46,
+                    fieldWidth: 46,
                     activeFillColor: Colors.white,
                     inactiveFillColor: Colors.white,
                     selectedFillColor: Colors.white,
@@ -125,6 +124,7 @@ class _CreatePinState extends State<CreatePin> {
               CustomButton(
                 label: "Create PIN",
                 onPressed: () {
+                  Get.toNamed('/confirmation');
                   // Handle sign in logic here
                 },
                 width: MediaQuery.of(context).size.width,

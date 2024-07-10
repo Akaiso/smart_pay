@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:smart_pay/view/widgets/other_buttons.dart';
 import '../widgets/bottom_indicator.dart';
 import '../widgets/custom_button.dart';
 
@@ -224,10 +226,7 @@ class _IDPageState extends State<IDPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: Image.asset("assets/images/back_button.png")),
+              backButton(),
               const SizedBox(
                 height: 20,
               ),
@@ -348,6 +347,7 @@ class _IDPageState extends State<IDPage> {
               CustomButton(
                 label: "Continue",
                 onPressed: () {
+                  Get.toNamed('/create_pin');
                   // Handle sign in logic here
                   // ScaffoldMessenger.of(context).showSnackBar(
                   //   SnackBar(content: Text('Email: $email')),

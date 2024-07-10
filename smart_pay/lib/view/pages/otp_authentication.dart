@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:smart_pay/view/widgets/other_buttons.dart';
 
 import '../widgets/bottom_indicator.dart';
 import '../widgets/custom_button.dart';
@@ -15,7 +20,7 @@ class OTPAuthentication extends StatefulWidget {
 
 class _OTPAuthenticationState extends State<OTPAuthentication> {
   final TextEditingController _otpController = TextEditingController();
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -25,6 +30,8 @@ class _OTPAuthenticationState extends State<OTPAuthentication> {
       _focusNode.requestFocus();
     });
   }
+
+  int counter = 30;
 
   @override
   void dispose() {
@@ -43,10 +50,7 @@ class _OTPAuthenticationState extends State<OTPAuthentication> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: Image.asset("assets/images/back_button.png")),
+              backButton(),
               const SizedBox(
                 height: 20,
               ),
@@ -64,7 +68,7 @@ class _OTPAuthenticationState extends State<OTPAuthentication> {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(10.0),
                 child: PinCodeTextField(
                   appContext: context,
                   length: 6,
@@ -74,15 +78,14 @@ class _OTPAuthenticationState extends State<OTPAuthentication> {
                   pinTheme: PinTheme(
                     shape: PinCodeFieldShape.box,
                     borderRadius: BorderRadius.circular(12),
-                    fieldHeight: 56,
-                    fieldWidth: 56,
+                    fieldHeight: 46,
+                    fieldWidth: 46,
                     activeFillColor: Colors.white,
                     inactiveFillColor: Colors.white,
                     selectedFillColor: Colors.white,
                     activeColor: Colors.transparent,
                     inactiveColor: const Color(0xffF9FAFB),
                     selectedColor: const Color(0xff2FA2B9),
-
                   ),
                   animationDuration: const Duration(milliseconds: 300),
                   //backgroundColor: Colors.transparent,
@@ -95,9 +98,10 @@ class _OTPAuthenticationState extends State<OTPAuthentication> {
                   onCompleted: (value) {
                     print("Completed: " + value);
                   },
-                  beforeTextPaste: (text){
+                  beforeTextPaste: (text) {
                     return true;
-                  },cursorColor: Colors.black,
+                  },
+                  cursorColor: Colors.black,
                 ),
               ),
               // TextField(
@@ -115,16 +119,28 @@ class _OTPAuthenticationState extends State<OTPAuthentication> {
               // ),
 
               const SizedBox(
-                height: 30,
+                height: 10,
+              ),
+
+              //Countdown
+              Align(alignment: Alignment.center,
+                child: Text(
+                  'Resend Code $counter secs',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 16,
+                      color: Color(0xff727272)),
+                ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
 
               const SizedBox(height: 32.0),
               CustomButton(
                 label: "Confirm",
                 onPressed: () {
+                  Get.toNamed('/id');
                   // Handle sign in logic here
                 },
                 width: MediaQuery.of(context).size.width,
@@ -132,7 +148,6 @@ class _OTPAuthenticationState extends State<OTPAuthentication> {
               const SizedBox(
                 height: 20,
               ),
-
 
               const SizedBox(
                 height: 100,

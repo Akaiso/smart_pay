@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:smart_pay/view/widgets/other_buttons.dart';
 
 import '../widgets/bottom_indicator.dart';
 import '../widgets/custom_button.dart';
+import '../widgets/others.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -24,39 +28,37 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      // appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: Image.asset("assets/images/back_button.png")),
+              backButton(),
               const SizedBox(
-                height: 20,
+                height: 25,
               ),
               Text.rich(
-                 TextSpan(
-                  text: "Create a ",
-                  style: Theme.of(context).textTheme.displayLarge,
-                   children: const <TextSpan>[
-                     TextSpan(
-                       text: "Smartpay",
-                       style: TextStyle(
-                         fontFamily: "SFPRODISPLAY",
-                         fontWeight: FontWeight.w600,
-                         fontSize: 24,color: Color(0xff0A6375),
-                       )
-                     ),
-                   ]
-                ),
+                TextSpan(
+                    text: "Create a ",
+                    style: Theme.of(context).textTheme.displayLarge,
+                    children: const <TextSpan>[
+                      TextSpan(
+                          text: "Smartpay",
+                          style: TextStyle(
+                            fontFamily: "SFPRODISPLAY",
+                            fontWeight: FontWeight.w600,
+                            fontSize: 24,
+                            color: Color(0xff0A6375),
+                          )),
+                    ]),
               ),
-              Text("account", style: Theme.of(context).textTheme.displayLarge,),
+              Text(
+                "account",
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
               const SizedBox(
-                height: 20,
+                height: 0,
               ),
 
               const SizedBox(
@@ -77,79 +79,42 @@ class _SignUpState extends State<SignUp> {
               ),
 
               const SizedBox(
-                height: 20,
+                height: 0,
               ),
 
               const SizedBox(height: 32.0),
               CustomButton(
-                label: "Sign In",
+                label: "Sign Up",
                 onPressed: () {
                   // Handle sign in logic here
                   final email = _emailController.text;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Email: $email')),
-                  );
+                  Get.toNamed('/otp_authentication');
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //   SnackBar(content: Text('Email: $email')),
+                  // );
                 },
                 width: MediaQuery.of(context).size.width,
               ),
               const SizedBox(
-                height: 20,
+                height: 25,
               ),
-              Row(
+              osDownloadSection(),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset("assets/images/line1.svg"),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const Text("OR"),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  SvgPicture.asset("assets/images/line2.svg")
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-
-              //Operating system buttons
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: OSButton(
-                      label: "assets/images/google.svg",
-                      onPressed: () {},
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: OSButton(
-                      label: "assets/images/apple.svg",
-                      onPressed: () {},
-                    ),
+                  Text("Already have an account? "),
+                  Text(
+                    "Sign In",
+                      style: TextStyle(
+                          color: Color(0xff0A6375),
+                          fontFamily: "SFPRODISPLAY",
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16)
                   )
                 ],
               ),
               const SizedBox(
                 height: 100,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Already have an account? "),
-                  Text(
-                    "Sign Up",
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 50,
               ),
               Align(alignment: Alignment.center, child: bottomIndicator())
             ],
