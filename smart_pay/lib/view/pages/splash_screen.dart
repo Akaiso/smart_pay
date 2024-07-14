@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen>
         CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
 
     //_startSplashScreenTimer();
-    Future.delayed(const Duration(seconds: 3), (){
+    Future.delayed(const Duration(seconds: 3), () {
       Get.offNamed('/onboarding');
     });
   }
@@ -45,8 +45,6 @@ class _SplashScreenState extends State<SplashScreen>
   //   Timer(const Duration(seconds: 2), _navigateToHome);
   // }
 
-
-
   // void _navigateToHome() {
   //   Navigator.of(context).pushReplacement(
   //     PageRouteBuilder(
@@ -58,15 +56,12 @@ class _SplashScreenState extends State<SplashScreen>
   //   );
   // }
 
-
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        color: Colors.white,
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:smart_pay/view/widgets/other_buttons.dart';
@@ -47,6 +48,9 @@ class _IDPageState extends State<IDPage> {
   List<Map<String, String>>? filteredCountries;
   TextEditingController searchController = TextEditingController();
   TextEditingController selectCountryController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   int? indNumber;
   int? countryInd;
@@ -209,7 +213,7 @@ class _IDPageState extends State<IDPage> {
 
   @override
   void dispose() {
-    searchController.dispose();
+    //searchController.dispose();
     super.dispose();
   }
 
@@ -219,147 +223,184 @@ class _IDPageState extends State<IDPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      // appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              backButton(),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Hey there! tell us a bit",
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-              Text.rich(
-                TextSpan(
-                    text: "about ",
-                    style: Theme.of(context).textTheme.displayLarge,
-                    children: const <TextSpan>[
-                      TextSpan(
-                          text: "yourself",
-                          style: TextStyle(
-                            fontFamily: "SFPRODISPLAY",
-                            fontWeight: FontWeight.w600,
-                            fontSize: 24,
-                            color: Color(0xff0A6375),
-                          )),
-                    ]),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color(0xffF9FAFB),
-                  labelText: 'Full name',
-                  labelStyle: Theme.of(context).textTheme.bodySmall,
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(16)),
-                ),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const SizedBox(
-                height: 16.0,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color(0xffF9FAFB),
-                  labelText: 'Username',
-                  labelStyle: Theme.of(context).textTheme.bodySmall,
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(16)),
-                ),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const SizedBox(
-                height: 16.0,
-              ),
-              TextField(
-                controller: selectCountryController,
-                readOnly: true,
-                decoration: InputDecoration(
-                  prefix: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 9, 0),
-                    child: Container(
-                      child: prefixImage,
-                    ),
-                  ), //prefixImage,
-                  filled: true,
-                  fillColor: const Color(0xffF9FAFB),
-                  labelText: 'Select Country',
-                  labelStyle: Theme.of(context).textTheme.bodySmall,
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(16)),
-                  suffixIcon: InkWell(
-                    onTap: () {
-                      _showCountryPicker(context);
-                    },
-                    child: SvgPicture.asset(
-                      "assets/images/chevron-bottom.svg",
-                      fit: BoxFit.scaleDown,
+              Column(
+                children: [
+                  Align(alignment: Alignment.centerLeft, child: backButton()),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Hey there! tell us a bit",
+                      style: Theme.of(context).textTheme.displayLarge,
                     ),
                   ),
-                ),
-                keyboardType: TextInputType.emailAddress,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text.rich(
+                      TextSpan(
+                          text: "about ",
+                          style: Theme.of(context).textTheme.displayLarge,
+                          children: const <TextSpan>[
+                            TextSpan(
+                                text: "yourself",
+                                style: TextStyle(
+                                  fontFamily: "SFPRODISPLAY",
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 24,
+                                  color: Color(0xff0A6375),
+                                )),
+                          ]),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  TextField(
+                    controller: fullNameController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffF9FAFB),
+                      labelText: 'Full name',
+                      labelStyle: Theme.of(context).textTheme.bodySmall,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  TextField(
+                    controller: userNameController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffF9FAFB),
+                      labelText: 'Username',
+                      labelStyle: Theme.of(context).textTheme.bodySmall,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  TextField(
+                    controller: selectCountryController,
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      prefix: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 9, 0),
+                        child: Container(
+                          child: prefixImage,
+                        ),
+                      ), //prefixImage,
+                      filled: true,
+                      fillColor: const Color(0xffF9FAFB),
+                      labelText: 'Select Country',
+                      labelStyle: Theme.of(context).textTheme.bodySmall,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(16)),
+                      suffixIcon: InkWell(
+                        onTap: () {
+                          _showCountryPicker(context);
+                        },
+                        child: SvgPicture.asset(
+                          "assets/images/chevron-bottom.svg",
+                          fit: BoxFit.scaleDown,
+                        ),
+                      ),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+
+                  //HOW TO USE A DROPDOWNBUTTON(You can use a stack to put it in a  textfield)
+                  // DropdownButton<String>(
+                  //     items: ['', '']
+                  //         .map((e) => DropdownMenuItem<String>(child: Text('')))
+                  //         .toList(),
+
+                  // [
+                  //   const DropdownMenuItem<String>(child: Text('')),
+                  //   const DropdownMenuItem<String>(child: Text('')),
+                  // ].toList(),
+
+                  // [
+                  //   'Chiffon',
+                  //   'Gabadin',
+                  //   'Cashmere',
+                  //   'Damaz',
+                  //   'Cotton',
+                  //   'linen'
+                  // ]
+                  //     .map<DropdownMenuItem<String>>(
+                  //         (e) => DropdownMenuItem(child: Text(e)))
+                  //     .toList(),
+                  // onChanged: (value) {}),
+
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffF9FAFB),
+                      labelText: 'Password',
+                      labelStyle: Theme.of(context).textTheme.bodySmall,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(16)),
+                      suffixIcon: InkWell(
+                          onTap: () {
+                            setState(() {
+                              _obscurePassword = !_obscurePassword;
+                            });
+                          },
+                          child: _obscurePassword
+                              ? Image.asset("assets/images/eye_on.png")
+                              : SvgPicture.asset(
+                                  "assets/images/eye_off.svg",
+                                  fit: BoxFit.scaleDown,
+                                )),
+                    ),
+                    obscureText: _obscurePassword,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomButton(
+                    label: "Continue",
+                    onPressed: () {
+                      Get.toNamed('/create_pin');
+                      fullNameController.clear();
+                      userNameController.clear();
+                      passwordController.clear();
+                      searchController.clear();
+                      // Handle sign in logic here
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(content: Text('Email: $email')),
+                      // );
+                    },
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 16.0,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color(0xffF9FAFB),
-                  labelText: 'Password',
-                  labelStyle: Theme.of(context).textTheme.bodySmall,
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(16)),
-                  suffixIcon: InkWell(
-                      onTap: () {
-                        setState(() {
-                          _obscurePassword = !_obscurePassword;
-                        });
-                      },
-                      child: _obscurePassword
-                          ? Image.asset("assets/images/eye_on.png")
-                          : SvgPicture.asset(
-                              "assets/images/eye_off.svg",
-                              fit: BoxFit.scaleDown,
-                            )),
-                ),
-                obscureText: _obscurePassword,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              CustomButton(
-                label: "Continue",
-                onPressed: () {
-                  Get.toNamed('/create_pin');
-                  // Handle sign in logic here
-                  // ScaffoldMessenger.of(context).showSnackBar(
-                  //   SnackBar(content: Text('Email: $email')),
-                  // );
-                },
-                width: MediaQuery.of(context).size.width,
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              const SizedBox(
-                height: 50,
+               SizedBox(
+                height: MediaQuery.of(context).size.height * 0.32,
               ),
               Align(alignment: Alignment.center, child: bottomIndicator())
             ],

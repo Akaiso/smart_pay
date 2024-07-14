@@ -80,9 +80,7 @@ Widget osDownloadSection(){
           )
         ],
       ),
-      const SizedBox(
-        height: 100,
-      ),
+
     ],
   );
 }
